@@ -1,0 +1,25 @@
+//request geo location from user
+const getPosition = () => {
+    return new Promise((resolve, reject) => {
+        const onSuccess = (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            pos = [lat,lng];
+
+            resolve(pos)
+        }
+
+        const onError = () => {
+            console.log('Can\'t get location info');
+            reject();
+        }
+
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    })
+}
+// use it anywhere
+getPosition().then((position) => {
+    console.log(position); 
+});
+
+https://api.open-meteo.com/v1/forecast?latitude=${latNum}&longitude=${longNum}&hourly=temperature_2m&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&hourly=&forecast_days=16&timezone=CST`
